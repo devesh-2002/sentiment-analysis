@@ -16,3 +16,5 @@ This is a Sentiment Analysis Website where user has to give an input sentence an
     yarn run dev
     ```
     The project will run on  ```localhost:3000```
+## Output 
+<img width="960" alt="image" src="https://github.com/devesh-2002/sentiment-analysis/assets/79015420/3f546f81-8530-4873-b64a-1d669eeddf4b">
