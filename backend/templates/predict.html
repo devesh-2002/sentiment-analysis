@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Prediction</title>
+</head>
+<body>
+    <h1>Sentiment Prediction Result</h1>
+    <form id="sentimentForm">
+        <label for="word">Enter a word:</label>
+        <input type="text" id="word" name="word">
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Intercept the form submission event
+            $("#sentimentForm").submit(function(event) {
+                event.preventDefault();
+
+                // Get the input word from the form
+                var inputWord = $("#word").val();
+
+                // Make an AJAX GET request to the Django view
+                $.ajax({
+                    url: "/predict-sentiment/",
+                    type: "GET",
+                    data: {
+                        word: inputWord
+                    },
+                    success: function(response) {
+                        // Display the prediction result
+                        var resultDiv = $("#result");
+                        resultDiv.html(
+                            "<p>Label: " + response.label + "</p>" +
+                            "<p>Score: " + response.score + "</p>"
+                        );
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        console.log(errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
